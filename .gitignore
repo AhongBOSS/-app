@@ -1,0 +1,76 @@
+# -------------------------
+# Flutter / Dart
+# -------------------------
+.dart_tool/
+.packages
+.pub-cache/
+.pub/
+.flutter-plugins
+.flutter-plugins-dependencies
+.buildlog/
+.melos_tool/
+.gradle/
+android/.gradle/
+
+# -------------------------
+# Build / Output
+# -------------------------
+/build/
+**/build/
+/out/
+
+# -------------------------
+# IDE / Editor settings
+# -------------------------
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+
+# -------------------------
+# Logs / Temporary
+# -------------------------
+*.log
+*.tmp
+*.temp
+*.swp
+*.swo
+*.lock
+
+# -------------------------
+# System files
+# -------------------------
+.DS_Store
+Thumbs.db
+
+# -------------------------
+# Testing / Coverage
+# -------------------------
+coverage/
+test/output/
+.dart_tool/package_config.json
+
+# -------------------------
+# Firebase & API keys (敏感資料)
+# -------------------------
+android/app/google-services.json
+ios/Runner/GoogleService-Info.plist
+
+# -------------------------
+# Configs you may want private
+# -------------------------
+.env
+*.keystore
+*.jks
+*.p12
+*.pem
+*.key
+*.crt
+
+# -------------------------
+# Misc
+# -------------------------
+.metadata
+app.iml
+devtools_options.yaml
