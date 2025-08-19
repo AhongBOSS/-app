@@ -25,223 +25,208 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
-        preferredSize: const Size.fromHeight(100), // AppBar 高度
+        preferredSize: const Size.fromHeight(80), // 減小AppBar高度
         child: AppBar(
-          centerTitle: true, // 標題置中
+          centerTitle: true,
           title: const Text(
             '一中吃什麼',
             style: TextStyle(
-              fontSize: 40, // 字體加大
+              fontSize: 32, // 減小字體
               fontWeight: FontWeight.bold,
             ),
           ),
           backgroundColor: const Color(0xFFE3F2FD),
-          elevation: 0, // 去除陰影
+          elevation: 0,
         ),
       ),
       backgroundColor: const Color(0xFFE3F2FD),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 24), // 讓整體向上偏移
-              // AppBar 下方，新增搜尋輸入框
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 8.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    prefixIcon: Icon(Icons.search, color: Colors.blue),
-                    hintText: '搜尋餐廳名稱或菜系',
-                    filled: true,
-                    fillColor: Color(0xFFBBDEFB),
-                    contentPadding: EdgeInsets.symmetric(vertical: 16.0, horizontal: 16.0),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(16),
-                      borderSide: BorderSide.none,
-                    ),
-                  ),
-                  style: const TextStyle(fontSize: 30),
-                ),
-              ),
-              const SizedBox(height: 8),
-              const Text(
-                '不知道吃甚麼？點這裡！',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.grey, // 文字顏色改為灰色
-                ),
-              ),
-              const SizedBox(height: 16), // 按鈕與文字間距
-              Align(
-                alignment: Alignment.topCenter,
-                child: SizedBox(
-                  width: 350,
-                  height: 120,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Color(0xFF16B1EF), // 淺藍色，比背景深一點
-                      foregroundColor: Colors.white,
-                      textStyle: const TextStyle(fontSize: 40), // 文字大小
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16), // 圓角
-                      ),
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const InputPage()),
-                      );
-                    },
-                    child: const Text('隨機推薦'),
-                  ), //隨機按鈕
-                ),
-              ),
-              const SizedBox(height: 24), // 按鈕與下方按鈕群間距
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+      body: Column( // 改用Column而非SingleChildScrollView
+        children: [
+          Expanded( // 使用Expanded讓內容填滿可用空間
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
+              child: Column(
                 children: [
-                  SizedBox(
-                    width: 110,
-                    height: 100,
-                    child: ElevatedButton( // 餐廳資訊按鈕
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF16B1EF), // 淺藍色，比背景深一點
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(fontSize: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        // TODO: 餐廳資訊功能
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.restaurant, size: 40, color: Colors.white),
-                          const SizedBox(height: 4),
-                          Flexible(
-                            child: Text(
-                              '餐廳資訊',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 14),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
+                  const SizedBox(height: 16), // 減少頂部間距
+                  // 搜尋輸入框
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: SizedBox(
+                      height: 50, // 固定搜尋框高度
+                      child: TextField(
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.search, color: Colors.blue, size: 20),
+                          hintText: '搜尋餐廳名稱或菜系',
+                          filled: true,
+                          fillColor: Color(0xFFBBDEFB),
+                          contentPadding: EdgeInsets.symmetric(vertical: 8.0, horizontal: 16.0),
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(16),
+                            borderSide: BorderSide.none,
                           ),
-                        ],
+                        ),
+                        style: const TextStyle(fontSize: 16), // 減小字體
                       ),
                     ),
                   ),
-                  const SizedBox(width: 16),
-                  SizedBox(
-                    width: 110,
-                    height: 100,
-                    child: ElevatedButton( // 篩選按鈕
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Color(0xFF16B1EF),
-                        foregroundColor: Colors.white,
-                        textStyle: const TextStyle(fontSize: 20),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                      ),
-                      onPressed: () {
-                        // TODO: 篩選功能
-                      },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.tune, size: 40, color: Colors.white),
-                          const SizedBox(height: 4),
-                          Flexible(
-                            child: Text(
-                              '篩選',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 16),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
-                            ),
-                          ),
-                        ],
-                      ),
+                  const SizedBox(height: 12),
+                  const Text(
+                    '不知道吃甚麼？點這裡！',
+                    style: TextStyle(
+                      fontSize: 20, // 減小字體
+                      fontWeight: FontWeight.bold,
+                      color: Colors.grey,
                     ),
                   ),
-                  const SizedBox(width: 16),
+                  const SizedBox(height: 16),
+                  // 隨機推薦按鈕
                   SizedBox(
-                    width: 110,
-                    height: 100,
-                    child: ElevatedButton( // 管理按鈕
+                    width: 300, // 減小按鈕寬度
+                    height: 80, // 減小按鈕高度
+                    child: ElevatedButton(
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xFF16B1EF),
                         foregroundColor: Colors.white,
-                        textStyle: const TextStyle(fontSize: 20),
+                        textStyle: const TextStyle(fontSize: 28), // 減小字體
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12),
+                          borderRadius: BorderRadius.circular(16),
                         ),
                       ),
                       onPressed: () {
-                        // TODO: 管理功能
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const InputPage()),
+                        );
                       },
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(Icons.settings, size: 40, color: Colors.white),
-                          const SizedBox(height: 4),
-                          Flexible(
-                            child: Text(
-                              '管理',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(fontSize: 16),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
+                      child: const Text('隨機推薦'),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  // 三個功能按鈕
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      SizedBox(
+                        width: 90, // 減小按鈕寬度
+                        height: 80, // 減小按鈕高度
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF16B1EF),
+                            foregroundColor: Colors.white,
+                            padding: EdgeInsets.all(8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
                             ),
                           ),
-                        ],
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.restaurant, size: 28, color: Colors.white),
+                              const SizedBox(height: 4),
+                              Text(
+                                '餐廳資訊',
+                                style: const TextStyle(fontSize: 12),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
                       ),
-                    ),
+                      SizedBox(
+                        width: 90,
+                        height: 80,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF16B1EF),
+                            foregroundColor: Colors.white,
+                            padding: EdgeInsets.all(8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.tune, size: 28, color: Colors.white),
+                              const SizedBox(height: 4),
+                              Text(
+                                '篩選',
+                                style: const TextStyle(fontSize: 12),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 90,
+                        height: 80,
+                        child: ElevatedButton(
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: Color(0xFF16B1EF),
+                            foregroundColor: Colors.white,
+                            padding: EdgeInsets.all(8),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                          ),
+                          onPressed: () {},
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.settings, size: 28, color: Colors.white),
+                              const SizedBox(height: 4),
+                              Text(
+                                '管理',
+                                style: const TextStyle(fontSize: 12),
+                                textAlign: TextAlign.center,
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
-            ],
+            ),
           ),
-        ),
+        ],
       ),
-      bottomNavigationBar: SizedBox(
-        height: 80, // 導覽列高度加大
-        child: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed,
-          backgroundColor: Color(0xFFBBDEFB),
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          showSelectedLabels: true,
-          showUnselectedLabels: true,
-          iconSize: 36, // 圖示加大
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: '首頁',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.search),
-              label: '搜尋',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.favorite),
-              label: '收藏',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.settings),
-              label: '設定',
-            ),
-          ],
-          currentIndex: 0, // 目前選中首頁
-          onTap: (index) {
-            // TODO: 可根據 index 切換頁面
-          },
-        ),
+      bottomNavigationBar: BottomNavigationBar( // 移除Container包裝，使用系統預設高度
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color(0xFFBBDEFB),
+        selectedItemColor: Colors.blue,
+        unselectedItemColor: Colors.grey,
+        showSelectedLabels: true,
+        showUnselectedLabels: true,
+        iconSize: 24,
+        selectedFontSize: 12,
+        unselectedFontSize: 12,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: '首頁',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.search),
+            label: '搜尋',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.favorite),
+            label: '收藏',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: '設定',
+          ),
+        ],
+        currentIndex: 0,
+        onTap: (index) {
+          // TODO: 可根據 index 切換頁面
+        },
       ),
     );
   }
